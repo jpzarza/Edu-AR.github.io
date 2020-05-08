@@ -3929,13 +3929,13 @@ simulationParameters.reproductiveNumber = 0;
 //divAdjust = 'Capacidad de contagio.<br/><font style="color:grey; font-size: 0.8vmax;">El desplazamiento hacia la derecha aumenta la capacidad de contagio de un individuo.</font>'
 //parameterData[10] = {name: 'infectionRadius', div: divAdjust, initValue: 0.1, max: 0.4, min: 0.01, step: 0.001, color: '10, 100%, 63%', transform: 'parseFloat(#paraValue#)', requiresReset: false, runFAtEnd: ''}
 //parameterData[1] = {name: 'probabilityofInfection', div: 'La probabilidad de infección en un día dado es de un @@@%',initValue: 6, max: 100, min: 0, step: 0.01, color: '10, 100%, 63%', transform: 'parseFloat(#paraValue#)/100', requiresReset: false, runFAtEnd: ''}
-divAdjust =
+//divAdjust =
   '<div class="row">@@@% población/comunidad infectada inicialmente<br/><font style="color:grey; font-size: 0.9vmax;"> En el caso de comunidades, @@@% de la comunidad es infectada inicialmente.</font> </div>';
-if (dmode == "landscape") {
+//if (dmode == "landscape") {
   divAdjust =
     '<div class="row"> @@@% población/comunidad infectada inicialmente<br/><font style="color:grey; font-size: 0.9vmax;">En el caso de comunidades, @@@% de la comunidad es infectada inicialmente.</font></div>';
 }
-parameterData[2] = {
+//parameterData[2] = {
   name: "fractionInfectedInitially",
   div: divAdjust,
   initValue: 1,
