@@ -26,7 +26,7 @@
 		rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
 		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -36,6 +36,14 @@
 	<link rel="icon" href="../square.png">
 
 	<style>
+		/* #universidades {
+			    position: absolute;
+			    font-size: 15px;
+			    font-family: raleway, sans-serif;
+			    color: white;
+			    top: 1em;
+			    left: 1em;
+			} */
 
 		#parameterfractionInfectedInitiallydivBox {
 			display: none !important;
@@ -74,6 +82,18 @@
 			font-family: sans-serif;
 		}
 
+		/* #caseTypeName {
+			    font-size: 1.2em !important;
+			    color: white !important;
+			    line-height: 1em;
+			} */
+
+		/* #caseTypeNameH {
+			    color: white !important;
+			    height: 70px !important;
+			    margin-top: -15px !important;
+			    overflow: hidden !important;
+			} */
 
 		#upperLayer {
 			box-shadow: none !important;
@@ -129,6 +149,46 @@
 			cursor: pointer;
 		}
 
+		/*.timesliderClass {
+				-webkit-appearance: none;
+				border-radius: 5px;
+				outline: none;
+				opacity: 0.7;
+				-webkit-transition: .2s;
+				transition: opacity .2s;
+				cursor: pointer;
+			}*/
+		/*.timesliderClass::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 22px;
+				height: 22px;
+				border-radius: 50%; 
+				background: hsla(200, 100%, 50%, 1);
+				cursor: pointer;
+			}
+			.timesliderClass::-moz-slider-thumb {
+				appearance: none;
+				width: 22px;
+				height: 22px;
+				border-radius: 50%; 
+				background: hsla(200, 100%, 50%, 1);
+				cursor: pointer;
+			}*/
+
+
+		/*#parametersListH::-webkit-scrollbar {
+				width: 1%;
+			}
+			#parametersListH::-webkit-scrollbar-track {
+				-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+				border-radius: 30px;
+			}
+			#parametersListH::-webkit-scrollbar-thumb {
+				background-color: hsla(190, 100%, 50%, 1);
+				border-radius: 50px;
+				/*outline: 1px solid slategrey;
+			}*/
 
 		body::-webkit-scrollbar {
 			width: 5px;
@@ -160,49 +220,11 @@
 		input:invalid {
 			box-shadow: 0 0 0px hsla(0, 0%, 0%, 0);
 		}
-		/* cambiar tipo de letra */
-		.container-fluid{
-			background-color: #383838;
-			color:white!important;
-		}
-		nav.navbar ul.nav li {
-    		font-family: 'Montserrat'; 
-				
-		}
- 
-		/* cambiar el color de fondo a la barra */
-		nav.navbar {
-    		background-color: #1982DC;
-			
-		}
-		.bg-secondary{
-			background-color: #383838
-		}
-		.box {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-
-		.box div {
-				width: 100px;
-				height: 100px;
-		}
-		.navbar-toggler-icon {
-    		background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-		}
-
-		.navbar-toggler {
-			border-color: rgb(255, 255, 255);
-		}
-		
-		
 	</style>
-	
 
-	
 
-		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -231,63 +253,91 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid" style="background-color: #f7f7f9">
 
-	<div class="row" style="background-color: #1982DC">
-	
+	<div class="row" style="background-color: #f0ad4e;">
+
 		<div class="pos-f-t">
 			<div class="collapse" id="navbarToggleExternalContent">
 				<div id="parametersH">
 					<div id="gradfillParameters"></div>
-						<div id="parametersListH" class="container-fluid">
+						<div id="parametersListH" class="container-fluid tex-center">
 
 						</div>
-					</div>
-				
-			</div>
-			<div class="pos-f-t">
-				<div class="collapse" id="navbarToggleExternalContent">
-				  <div class="navbar p-4">
-				  </div>
 				</div>
-				<nav class="navbar">
-				  <div>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" 
-						data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" 
-						aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
+			</div>
+			<nav class="navbar navbar-dark">
+				<div class="row">
+					<div class="col-3">
+						<button class="navbar-toggler" type="button" data-toggle="collapse"
+							data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+							aria-expanded="false" aria-label="Toggle navigation">
+
+
+							<span class="navbar-toggler-icon"></span>
 					</div>
 					<div class="col-9">
-						<h6 id="universidades" class="w-100 text-white">UNTDF & UTN - Simulación interactiva de una
+						<h6 id="universidades" class="w-100 text-light">UNTDF & UTN - Simulación interactiva de una
 							Epidemia
 						</h6>
-					</div>  
-				</button>
-				</nav>
-			</div>
-
-	</div>
-
-	</div>
-	<div class="row text-light" style="background-color: #FC9630; ;" id="caseTypeNameH">
-		<span id="caseTypeName">Caso Simple: <p><small>una ciudad o pueblo, sin contacto con otras
-				poblaciones.</small></p></span>
-	</div>
-	<div class="row " id="containAll">
-		<div class="row" >
-			<div id="MainBlock1" >
-				<div class="fluid-container">
-					<div id="plotGraphH" style=" width: 120%; height: 250px; overflow: hidden;position: relative; z-index: 1; display: inline-block">
-						<div id="graphY"></div>
-						<div id="graphX"></div>
 					</div>
 				</div>
-				<div id="MainBlock2">
+
+
+				</button>
+		</div>
+		</nav>
+	</div>
+
+	</div>
+	<div class="row bg-secondary text-light" id="caseTypeNameH">
+		<span id="caseTypeName">Caso Simple: <small>una ciudad o pueblo, sin contacto con otras
+				poblaciones.</small></span>
+	</div>
+	<div class="row text-white" id="containAll">
+		<div class="row">
+			<div id="MainBlock1" class="col-lg-6 col-sm-6 col-xs-12">
+				<div id="plotGraphH" class="bg-secondary" style=" width: 100%; height: 200px; overflow: hidden;position: relative; z-index: 1; display: inline-block;">
+					<div id="graphY">% Población</div>
+					<div id="graphX">Días</div>
+				</div>
+				<!-- <div id="accordion">
+					<div class="card" style="background-color: #f0ad4e;">
+						<div class="card-header" id="headingOne">
+							<h6 class="mb-0">
+								<button class="btn btn-link w-100" data-toggle="collapse" data-target="#collapseOne"
+									aria-expanded="true" aria-controls="collapseOne">
+									<div id="parametersTitleText">
+										<span class="text-white">PARÁMETROS</span>
+									</div>
+								</button>
+							</h6>
+						</div>
+
+						<div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+							data-parent="#accordion">
+							<div class="card-body">
+								<div id="parametersH">
+									<div id="gradfillParameters"></div>
+									<small>
+										<div id="parametersListH" class="container tex-right">
+
+										</div>
+									</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+				<div id="MainBlock2" class="col-lg-6 col-sm-6 col-xs-12">
 					<div id="upperLayer" hidden>
+						<!-- <span id="R_0" style="font-size: 1vmax; color: white; font-family: Source Sans Pro;">R : 0.1</span>
+						<span id="R_0-Info" style="font-size: 0.7vmax; color: grey; font-family: Source Sans Pro; float: right; top: 80%;">Reproductive Number Calculation here is a little different from the 3B1B video. <br/>Here, its Average(Number of individuals infected by one infected individual)</span> -->
 					</div>
 					<div class="row" style="height: 20em;">
-						<div class="col-12 ">
-							<div id="simpleCaseGraphH" 
+						<div class="col-12 bg-secondary">
+							<div id="simpleCaseGraphH"
 								style="width: 100%; height: 100%; overflow: hidden;position: absolute; z-index: 1;display: inline-block;">
 							</div>
 							<div id="centralLocationCaseGraphH"
@@ -309,14 +359,6 @@
 					</div>
 
 
-					<div class="row my-auto">
-						<div class="text-center align-self-center w-100">
-						
-							<label class="radio-inline"><input onchange="handleQClick(event)" type="radio" name="optradio" checked>Si</label>
-							<label class="radio-inline"><input type="radio" name="optradio" checked>No</label>
-						</div>
-						
-					</div>
 
 					<div class="row my-auto">
 						<div id="quarantineH" class="text-center align-self-center w-100">

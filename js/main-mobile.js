@@ -869,16 +869,22 @@ function updateGraphZoom(graphname, newMinMax) {
     scale = gdata.ymax - gdata.ymin;
     expstring = scale.toExponential().toString();
     order = expstring.slice(expstring.indexOf("e") + 1) * -1;
+    //Etiqueta
     labelylocationX = gdata.axislocationX;
+    
+    
+    
     if (
       graphToScaledX(gdata.axislocationX, gdata.xmin, gdata.xmax, aratio) < 0
     ) {
       labelylocationX = gdata.xmin;
+      
     }
     if (
       graphToScaledX(gdata.axislocationX, gdata.xmin, gdata.xmax, aratio) > 100
     ) {
       labelylocationX = gdata.xmax;
+      
     }
     for (
       m = gdata.ylabelexclusionsstart;
@@ -928,9 +934,11 @@ function updateGraphZoom(graphname, newMinMax) {
             0.5 +
             "%"
         );
+        
+        //Dibuja los eje X del grafico de Areas
         textElement.setAttribute("id", gdata.name + "-yticklabel-" + m);
         textElement.style.fontSize = gdata.fontSize;
-        textElement.style.fontFamily = "Source Sans Pro";
+        textElement.style.fontFamily = "Montserrat";
         textElement.style.userSelect = "none";
         // textElement.setAttribute('text-anchor', 'middle')
         textElement.style.fill = gdata.ymajorgridlabelcolor;
@@ -1016,7 +1024,7 @@ function updateGraphZoom(graphname, newMinMax) {
             "rotate(90, " + transformedXval + ", " + transformedYval + ")"
           );
         }
-        textElement.style.fontFamily = "Source Sans Pro";
+        textElement.style.fontFamily = "Montserrat";
         if (darkmode == false) {
           textElement.style.fill = gdata.xmajorgridlabelcolor;
         } else {
@@ -1083,6 +1091,7 @@ function updateGraphZoom(graphname, newMinMax) {
       "y2",
       graphToScaledY(lineoptions.y2, gdata.ymin, gdata.ymax, aratio) + "%"
     );
+    
   }
 
   for (var key in gdata.circleData) {
@@ -1674,7 +1683,7 @@ function addGraph(parentdiv, name, gdata) {
         textElement.setAttribute("id", gdata.name + "-yticklabel-" + m);
         textElement.style.fontSize = gdata.fontSize;
         textElement.style.userSelect = "none";
-        textElement.style.fontFamily = "Source Sans Pro";
+        textElement.style.fontFamily = "Montserrat";
         textElement.style.fill = gdata.ymajorgridlabelcolor;
         svgElement.appendChild(textElement);
         gdata.ymajorlabelsElements.push(textElement);
@@ -1743,7 +1752,7 @@ function addGraph(parentdiv, name, gdata) {
         );
         textElement.setAttribute("id", gdata.name + "-xticklabel-" + m);
         textElement.style.fontSize = gdata.fontSize;
-        textElement.style.fontFamily = "Source Sans Pro";
+        textElement.style.fontFamily = "Montserrat";
         textElement.style.userSelect = "none";
         textElement.style.fill = gdata.xmajorgridlabelcolor;
 
@@ -1753,8 +1762,8 @@ function addGraph(parentdiv, name, gdata) {
       }
     }
   }
-
-  gdata.xaxislabel = gdata.xaxislabel || "x axis";
+  //JPZ
+  gdata.xaxislabel = gdata.xaxislabel || "";
   gdata.yaxislabel = gdata.yaxislabel || "y axis";
 
   gdata.xaxislabelshift = gdata.xaxislabelshift || 2;
@@ -1789,7 +1798,7 @@ function addGraph(parentdiv, name, gdata) {
     textElement.setAttribute("id", name + "-xaxislabel");
     textElement.style.fontSize = gdata.fontSize;
     textElement.style.color = gdata.xaxislabelcolor;
-    textElement.style.fontFamily = "Source Sans Pro";
+    textElement.style.fontFamily = "Montserrat";
 
     svgElement.appendChild(textElement);
     gdata.xaxislabelElement = textElement;
@@ -1816,7 +1825,7 @@ function addGraph(parentdiv, name, gdata) {
     textElement.setAttribute("id", name + "-yaxislabel");
     textElement.style.fontSize = gdata.fontSize;
     textElement.style.color = gdata.yaxislabelcolor;
-    textElement.style.fontFamily = "Source Sans Pro";
+    textElement.style.fontFamily = "Montserrat";
 
     svgElement.appendChild(textElement);
     gdata.yaxislabelElement = textElement;
@@ -2775,14 +2784,16 @@ function addText(graphname, textname, textoptions) {
 
   aratio = gdata.aspectratio;
 
-  textoptions.x = parseFloat(textoptions.x.toString() || 0);
-  textoptions.y = parseFloat(textoptions.y.toString() || 0);
+  //textoptions.x = parseFloat(textoptions.x.toString() || 0);
+  //console.log(textoptions);
+
+  //textoptions.y = parseFloat(textoptions.y.toString() || 0);
   textoptions.text = textoptions.text || "";
   textoptions.name = textname || uid;
 
   textoptions.textAlign = textoptions.textAlign || "left";
   textoptions.fontSize = textoptions.fontSize || 12;
-  textoptions.fontFamily = textoptions.fontFamily || "Source Sans Pro";
+  textoptions.fontFamily = textoptions.fontFamily || "Montserrat";
 
   textoptions.textcolor = textoptions.textcolor || "hsla(190, 100%, 0%, 1)";
 
@@ -2823,12 +2834,28 @@ function updateText(graphname, textname, textvalues) {
   textElement = gdata.textData[textname][0];
 
   textoptions.text = textvalues.text || textoptions.text;
-  textoptions.x = textvalues.x || textoptions.x;
-  textoptions.y = textvalues.y || textoptions.y;
+  //textoptions.x = textvalues.x || textoptions.x;
+  //textoptions.y = textvalues.y || textoptions.y;
   textoptions.textcolor = textvalues.textcolor || textoptions.textcolor;
   textoptions.fontSize = textvalues.fontSize || textoptions.fontSize;
+  //JPZ 11102020
+  ejex=0;
+  ejey=-25;
+  if(textoptions.name == "infectedText"){
+    textoptions.x = ejex;
+    textoptions.y = ejey;
+  }
+  if(textoptions.name == "susceptibleText"){
+      textoptions.x = ejex;
+      textoptions.y = ejey-10;
+  }
+  if(textoptions.name == "removedText"){
+      textoptions.x = ejex;
+      textoptions.y = ejey-20;
+  }
 
   textElement.innerHTML = textoptions.text;
+  //console.log(textElement.innerHTML);
   textElement.setAttribute(
     "x",
     graphToScaledX(textoptions.x, gdata.xmin, gdata.xmax, aratio) + "%"
@@ -3851,7 +3878,7 @@ function handleLayout1() {
     document.getElementById("quarantineH").style.fontSize = "0.9vmax";
     document.getElementById("quarantineH").style.float = "right";
     document.getElementById("quarantineH").style.width = "35%";
-    document.getElementById("quarantineH").style.fontFamily = "Source Sans Pro";
+    document.getElementById("quarantineH").style.fontFamily = "Montserrat";
     document.getElementById("quarantinecheckLabel").style.fontSize = "0.9vmax";
 
     //document.getElementById("mainB2HSpacer3").style.height = "3%";
@@ -3889,8 +3916,10 @@ simulationParameters = {};
 parameterData = {};
 
 simulationParameters.reproductiveNumber = 0;
+//divAdjust =
+//  '<span class="mt-3"> @@@% población/comunidad infectada inicialmente </span>';
 divAdjust =
-  '<span class="mt-3"> @@@% población/comunidad infectada inicialmente </span>';
+  '<span> @@@% comunidad infectada inicialmente </span>';
 parameterData[2] = {
   name: "fractionInfectedInitially",
   div: divAdjust,
@@ -3898,14 +3927,17 @@ parameterData[2] = {
   max: 100,
   min: 0,
   step: 0.1,
-  color: "10, 100%, 63%",
+  color: "25, 130, 220",
   transform: "parseFloat(#paraValue#)/100",
   requiresReset: true,
   runFAtEnd: "",
 };
 //parameterData[3] = {name: 'infectionTime', div: 'La duración de la infección es de @@@ días',initValue: 25, max: 100, min: 1, step: 1, color: '10, 100%, 63%', transform: 'parseInt(#paraValue#)', requiresReset: false, runFAtEnd: ''}
+//divAdjust =
+//  '<div class="col-12" ><span>Normativas sociales</span> </div> <div class="col-12"><span class="float-left">Menores</span><span class="float-right">Mayores</span></div>';
+ 
 divAdjust =
-  '<div class="col-12" ><span>Normativas sociales</span> </div> <div class="col-12"><span class="float-left">Menores</span><span class="float-right">Mayores</span></div>';
+  '<div><span>Normativas sociales</span> </div> <div class="col-12"><span class="float-left">Menores</span><span class="float-right">Mayores</span></div>';
   
 parameterData[4] = {
   name: "socialDistancingFactorA",
@@ -3914,7 +3946,7 @@ parameterData[4] = {
   max: 1,
   min: 0,
   step: 0.01,
-  color: "40, 100%, 50%",
+  color: "25, 130, 220",
   transform: "parseFloat(#paraValue#)",
   requiresReset: false,
   runFAtEnd:
@@ -3927,7 +3959,7 @@ parameterData[5] = {
   max: 100,
   min: 0,
   step: 0.1,
-  color: "40, 100%, 50%",
+  color: "25, 130, 220",
   transform: "parseFloat(#paraValue#)/100",
   requiresReset: false,
   runFAtEnd: "handleSDObedience()",
@@ -3950,7 +3982,7 @@ parameterData[7] = {
   max: 25,
   min: 1,
   step: 1,
-  color: "10, 100%, 63%",
+  color: "25, 130, 220",
   transform: "parseInt(#paraValue#)",
   requiresReset: true,
   runFAtEnd: "",
@@ -3963,7 +3995,7 @@ parameterData[8] = {
   max: 50,
   min: 0,
   step: 1,
-  color: "10, 100%, 63%",
+  color: "25, 130, 220",
   transform: "parseInt(#paraValue#)",
   requiresReset: true,
   runFAtEnd: "",
@@ -3976,12 +4008,12 @@ parameterData[9] = {
   max: 100,
   min: 0,
   step: 0.1,
-  color: "58, 100%, 50%",
+  color: "25, 130, 220",
   transform: "parseFloat(#paraValue#)/100",
   requiresReset: true,
   runFAtEnd: "",
 };
-//parameterData[10] = {name: 'probabilityCLVisit', div: "@@@% de probabilidad de que un individuo visite el punto de aglomeración en una hora dada.", initValue: 0.4, max: 2, min: 0, step: 0.001, color: '280, 100%, 80%', transform: 'parseFloat(#paraValue#)/100', requiresReset: false, runFAtEnd: ''}
+
 //parameterData[11] = {name: 'travelProbability', div: "@@@% de probabilidad de que un individuo viaje un día dado a otra comunidad.", initValue: 2, max: 10, min: 0, step: 0.01, color: '76, 100%, 50%', transform: 'parseFloat(#paraValue#)/100', requiresReset: false, runFAtEnd: ''}
 //parameterData[12] = {name: 'nPerCommunity', div: "@@@ individuos por comunidad.", initValue: 60, max: 500, min: 3, step: 1, color: '76, 100%, 50%', transform: 'parseInt(#paraValue#)', requiresReset: true, runFAtEnd: ''}
 //parameterData[13] = {name: 'infectNCommunitiesInitially', div: " @@@ comunidades infectadas inicialmente.", initValue: 2, max: 3, min: 0, step: 1, color: '76, 100%, 50%', transform: 'parseInt(#paraValue#)', requiresReset: true, runFAtEnd: ''}
@@ -4013,7 +4045,7 @@ function addVariousParameters() {
         'Text" style="margin:0px;width:45%; position: relative; z-index: 1;display: inline-block; text-align: left;">' +
         parameterData[parameterIndex].div.replace(
           /@@@/g,
-          '<span style="font-weight:bold; color:hsla(' +
+          '<span style="font-weight:regular color:hsla(' +
             parameterData[parameterIndex].color +
             ', 1);">' +
             parameterData[parameterIndex].initValue +
@@ -4057,7 +4089,7 @@ function addVariousParameters() {
         'Text">' +
         parameterData[parameterIndex].div.replace(
           /@@@/g,
-          '<span style="font-weight: bold; color: white;">' +
+          '<span style="font-weight: regular; font-size=8px; color: white;">' +
             parameterData[parameterIndex].initValue +
             "</span>"
         ) +
@@ -4103,7 +4135,7 @@ function parameterEvent(event) {
     "parameter" + pName + "Text"
   ).innerHTML = parData.div.replace(
     /@@@/g,
-    '<span style="font-weight: bold; color:white;">' +
+    '<span style="font-weight: regular; color:white;">' +
       event.target.value +
       "</span>"
   );
@@ -4258,7 +4290,7 @@ function changeParameter(paraN, paraValueToSet) {
     "parameter" + pName + "Text"
   ).innerHTML = parData.div.replace(
     /@@@/g,
-    '<span style="font-weight: bold; color:hsla(' +
+    '<span style="font-weight: regular; color:hsla(' +
       parData.color +
       ', 1);">' +
       paraValueToSet +
@@ -4414,7 +4446,7 @@ function changeParameterWithoutReload(paraN, paraValueToSet) {
     "parameter" + pName + "Text"
   ).innerHTML = parData.div.replace(
     /@@@/g,
-    '<span style="font-weight: bold; color:hsla(' +
+    '<span style="font-weight: regular; color:hsla(' +
       parData.color +
       ', 1);">' +
       paraValueToSet +
@@ -4608,10 +4640,17 @@ function setUpPlotGraph() {
   removedLinePath = addPath("plotG", "removedLine", options)[0];
   removedLinePath.style.fill = "hsla(" + stateColors["removed"] + ",1)";
 
+  //Referencias
   options = {};
-  options.x = 10 * 1.03;
-  options.y = 80;
-  options.text = "1% Recuperados";
+  //Cambiamos POS de X
+  //options.x = 10 * 1.03;
+  //options.y = 80;
+  ejex=0
+  ejey=-25
+
+  options.x = ejex;
+  options.y = ejey;
+  options.text = "1%\t Recuperados";
   options.fontSize = fontForLineLabel;
   options.textcolor = "hsl(195, 100%, 50%)";
   addText("plotG", "removedText", options);
@@ -4626,9 +4665,9 @@ function setUpPlotGraph() {
   susceptibleLinePath.style.fill = "hsla(" + stateColors["susceptible"] + ",1)";
 
   options = {};
-  options.x = 10 * 1.03;
-  options.y = 50;
-  options.text = "1% Susceptibles";
+  options.x = ejex;
+  options.y = ejey-10;
+  options.text = "1%\t Susceptibles";
   options.fontSize = fontForLineLabel;
   options.textcolor = "hsla(" + stateColors["susceptible"] + ",1)";
   addText("plotG", "susceptibleText", options);
@@ -4643,8 +4682,8 @@ function setUpPlotGraph() {
   infectedLinePath.style.fill = "hsla(" + stateColors["infected"] + ",1)";
 
   options = {};
-  options.x = 10 * 1.03;
-  options.y = 20;
+  options.x = ejex;
+  options.y = ejey-20;
   options.text = "1% Contagiados";
   options.fontSize = fontForLineLabel;
   options.textcolor = "hsla(" + stateColors["infected"] + ",1)";
@@ -6214,8 +6253,8 @@ function updatePlotGraph() {
 
   options = {};
   options.text = removedV.toFixed(1) + "% Recuperados";
-  options.y = (100 + infectedV + susceptibleV) / 2;
-  yremovedTextLoc = (100 + infectedV + susceptibleV) / 2;
+  //options.y = (100 + infectedV + susceptibleV) / 2;
+  //yremovedTextLoc = (100 + infectedV + susceptibleV) / 2;
   if (dayCount >= 10) {
     options.x = dayCount * 1.03;
   }
@@ -6223,12 +6262,14 @@ function updatePlotGraph() {
 
   options = {};
   options.text = susceptibleV.toFixed(1) + "% Susceptibles";
-  options.y = (susceptibleV + infectedV + infectedV) / 2;
-  ysusceptibleTextLoc = (susceptibleV + infectedV + infectedV) / 2;
-  if ((100 - infectedV) / 2 < 15) {
-    options.y = (100 + infectedV + susceptibleV) / 2 - 15;
-    ysusceptibleTextLoc = (100 + infectedV + susceptibleV) / 2 - 15;
-  }
+  
+  //Se cambia la proporcion de movilidad de los valores que informan % en eje y
+  //options.y = (susceptibleV + infectedV + infectedV) / 2;
+  //ysusceptibleTextLoc = (susceptibleV + infectedV + infectedV) / 2;
+  // if ((100 - infectedV) / 2 < 15) {
+  //   options.y = (100 + infectedV + susceptibleV) / 2 - 15;
+  //   ysusceptibleTextLoc = (100 + infectedV + susceptibleV) / 2 - 15;
+  // }
   if (dayCount >= 10) {
     options.x = dayCount * 1.03;
   }
@@ -6236,10 +6277,10 @@ function updatePlotGraph() {
 
   options = {};
   options.text = infectedV.toFixed(1) + "% Contagiados";
-  options.y = infectedV / 2;
-  if (ysusceptibleTextLoc - infectedV / 2 < 15) {
-    options.y = ysusceptibleTextLoc - 15;
-  }
+  // options.y = infectedV / 2;
+  // if (ysusceptibleTextLoc - infectedV / 2 < 15) {
+  //   options.y = ysusceptibleTextLoc - 15;
+  // }
   if (dayCount >= 10) {
     options.x = dayCount * 1.03;
   }
@@ -6258,8 +6299,7 @@ function updatePlotGraph() {
     }
   }
 
-  // document.getElementById('R_0').innerHTML = 'R : ' + (totalInfections/casesSoFar).toFixed(2)
-  // console.log(totalInfections/casesSoFar, casesSoFar*100/totalP)
+
 }
 
 function handleCalculationPlaying() {
@@ -6791,16 +6831,16 @@ function updateHealthActionsDescription(value) {
     "simpleCaseGraph&QG",
     "simpleCaseGraph&QH",
     "simpleCaseGraphH",
-    "Caso Simple: <small>una ciudad o pueblo, sin contacto con otras poblaciones.</small>",
+    "Caso Simple: <p><small>una ciudad o pueblo, sin contacto con otras poblaciones.</small></p>",
   ];
   graphToQMap["simpleCase&Q"] = [
     "simpleCase",
     "simpleCaseGraphG",
     "simpleCaseGraphH",
     "simpleCaseGraph&QH",
-    "Caso Simple con Medidas del Sistema de Salud: <small>el sistema de salud detecta, trata y aísla a las personas que presentan síntomas</small> " +
+    "Caso Simple con Medidas del Sistema de Salud: <p><small>el sistema de salud detecta, trata y aísla a las personas que presentan síntomas</small></p><b> " +
       value +
-      " días después de contagiadas.",
+      " días después de contagiadas.</b>",
   ];
 
   graphToQMap["centralLocationQuarantineCase"] = [
@@ -6808,16 +6848,16 @@ function updateHealthActionsDescription(value) {
     "centralLocationCaseG",
     "centralLocationCaseGraphH",
     "centralLocationQuarantineCaseGraphH",
-    "Punto de Aglomeración con Medidas del Sistema de Salud: <small>el sistema de salud detecta, trata y aísla a las personas que presentan síntomas </small>" +
+    "Punto de Aglomeración con Medidas del Sistema de Salud: <p> <small>el sistema de salud detecta, trata y aísla a las personas que presentan síntomas </small></p> <b>" +
       value +
-      " días después de contagiadas.",
+      " días después de contagiadas.</b>",
   ];
   graphToQMap["centralLocationCase"] = [
     "centralLocationQuarantineCase",
     "centralLocationQuarantineCaseGraph",
     "centralLocationQuarantineCaseGraphH",
     "centralLocationCaseGraphH",
-    "Punto de Aglomeración: <small>un supermercado, un banco, hospital, cine, etc.</small>",
+    "Punto de Aglomeración: <p><small>un supermercado, un banco, hospital, cine, etc.</small></p>",
   ];
 
   graphToQMap["communitiesQuarantineCase"] = [
@@ -6825,16 +6865,16 @@ function updateHealthActionsDescription(value) {
     "communitiesCaseGraph",
     "communitiesCaseGraphH",
     "communitiesQuarantineCaseGraphH",
-    "Interacción entre Comunidades con Medidas del Sistema de Salud: <small>el sistema de salud detecta, trata y aísla a las personas que presentan síntomas </small<" +
+    "Interacción entre Comunidades con Medidas del Sistema de Salud: <p><small>el sistema de salud detecta, trata y aísla a las personas que presentan síntomas <b>" +
       value +
-      " días después de contagiadas.",
+      " días después de contagiadas.</b></small></p>",
   ];
   graphToQMap["communitiesCase"] = [
     "communitiesQuarantineCase",
     "communitiesQuarantineCaseGraph",
     "communitiesQuarantineCaseGraphH",
     "communitiesCaseGraphH",
-    "Interacción entre Comunidades: <small>hemos puesto 3 ciudades, con gente que mayormente circula en su ciudad, pero algunas viajan de una ciudad a otra.</small>",
+    "Interacción entre Comunidades: <p><small>hemos puesto 3 ciudades, con gente que mayormente circula en su ciudad, pero algunas viajan de una ciudad a otra.</small></p>",
   ];
 }
 
