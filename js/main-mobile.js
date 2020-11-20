@@ -6463,10 +6463,10 @@ playAnimationLoop();
 function playpauseSim(event) {
   if (playing) {
     playing = false;
-    document.getElementById("playbutton").value = "INICIO";
+    
   } else {
     playing = true;
-    document.getElementById("playbutton").value = "PAUSA";
+
   }
 }
 

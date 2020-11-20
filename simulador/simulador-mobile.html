@@ -94,6 +94,107 @@
 			outline: none !important;
 			border: 0px solid black;
 		}
+		.button {
+			background-color: #FC9630;
+			border: none;
+			color: white;
+			padding: 0px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			/*margin: 1px 1px;*/
+			border-radius: 12px;
+			font-family: 'Montserrat';
+			font-size: 1.6vmax;
+  			width: 100%;
+			height: 150%;  
+		}
+
+		.divButton {
+			margin: auto;
+			padding: 0px; 
+			margin: 0px;
+		}
+
+			.switch {
+			position: relative;
+			display: inline-block;
+			width: 60px;
+			height: 34px;
+			}
+
+			.switch input { 
+			opacity: 0;
+			width: 0;
+			height: 0;
+			}
+
+			.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			-webkit-transition: .4s;
+			transition: .4s;
+			}
+
+			.slider:before {
+			position: absolute;
+			content: "";
+			height: 26px;
+			width: 26px;
+			left: 4px;
+			bottom: 4px;
+			background-color: white;
+			-webkit-transition: .4s;
+			transition: .4s;
+			}
+
+			input:checked + .slider {
+			background-color: #2196F3;
+			}
+
+			input:focus + .slider {
+			box-shadow: 0 0 1px #2196F3;
+			}
+
+			input:checked + .slider:before {
+			-webkit-transform: translateX(26px);
+			-ms-transform: translateX(26px);
+			transform: translateX(26px);
+			}
+
+			/* Rounded sliders */
+			.slider.round {
+			border-radius: 34px;
+			}
+
+			.slider.round:before {
+			border-radius: 50%;
+			}
+			.buttonPlay {
+				border: 0;
+				background: transparent;
+				box-sizing: border-box;
+				width: 0;
+				height: 74px;
+				border-color: transparent transparent transparent #202020;
+				transition: 100ms all ease;
+				cursor: pointer;
+				border-style: solid;
+				border-width: 37px 0 37px 60px;
+				}
+				.buttonPlay.paused {
+				border-style: double;
+				border-width: 0px 0 0px 60px;
+				}
+				.button:hover {
+				border-color: transparent transparent transparent hsla(200, 100%, 50%, 1);
+				}
+		
 	</style>
 
 	<style id="sliderStyleH" type="text/css">
@@ -276,17 +377,19 @@
 	<div class="row " id="containAll">
 		<div class="row" >
 			<div id="MainBlock1" >
-				<div class="fluid-container">
-					<div id="plotGraphH" style=" width: 120%; height: 250px; overflow: hidden;position: relative; z-index: 1; display: inline-block">
+				<div class="container-fluid">
+					<div id="plotGraphH" style=" width: 120%; height: 250px; 
+						overflow: hidden;position: relative; z-index: 1; 
+						display: inline-block">
 						<div id="graphY"></div>
 						<div id="graphX"></div>
 					</div>
 				</div>
-				<div id="MainBlock2">
+				<div id="MainBlock2" class="container-fluid">
 					<div id="upperLayer" hidden>
 					</div>
-					<div class="row" style="height: 20em;">
-						<div class="col-12 ">
+					<div class="row" style="height: 15em; padding: 1em;">
+						<div class="col-12">
 							<div id="simpleCaseGraphH" 
 								style="width: 100%; height: 100%; overflow: hidden;position: absolute; z-index: 1;display: inline-block;">
 							</div>
@@ -307,60 +410,22 @@
 							</div>
 						</div>
 					</div>
-
-
-					<div class="row my-auto">
-						<div class="text-center align-self-center w-100">
-						
-							<label class="radio-inline"><input onchange="handleQClick(event)" type="radio" name="optradio" checked>Si</label>
-							<label class="radio-inline"><input type="radio" name="optradio" checked>No</label>
-						</div>
-						
-					</div>
-
-					<div class="row my-auto">
-						<div id="quarantineH" class="text-center align-self-center w-100">
-							<input onchange="handleQClick(event)" type="checkbox" id="quarantinecheck"
-								name="quarantinecheck" value="quarantinecheck"><label id="quarantinecheckLabel"
-								for="quarantinecheck"
-								style="color: var(--themeinfected); font-size: 1.5vmax; font-weight: bold;">MEDIDAS
-								SISTEMA DE SALUD</label>
-						</div>
-					</div>
-					<!--JPZ Acá se tiene que mejorar la disposicion de los botones-->
-					<div id="caseTypeChooseH" class="row">
-						<div id="simpleCaseoptionH" class="col-4 p-0">
-							<input onclick="handleConfigChange(event)" id='simpleCaseoption' value='SIMPLE' list="brow"
-								style="width: 100%; height: 100%;  font-family: Source Sans Pro; font-weight: bold; text-align: center;font-size: 1.5vmax; letter-spacing: 0.5px; color: hsla(0, 100%, 0%, 1); cursor: pointer; user-select: none; border-color: hsla(0, 0%, 70%, 1); outline: none; vertical-align: middle; border-top-left-radius: 20px; border-bottom-left-radius: 20px; background: hsla(40,100%,50%,1); border: 0.5px solid hsla(40,100%,50%,1);"
-								readonly></input>
-						</div>
-						<div id="centralLocationoptionH" class="col-4 p-0">
-							<input onclick="handleConfigChange(event)" id='centralLocationoption'
-								value='PUNTO DE AGLOMERACIÓN' list="brow"
-								style="width: 100%; height: 100%;  font-family: Source Sans Pro; font-weight: bold; text-align: center;font-size: 1vmax; letter-spacing: 0.5px; color: grey; cursor: pointer; user-select: none; border-color: hsla(0, 0%, 70%, 1); outline: none; vertical-align: middle;  background: hsla(280,100%,70%,0); border: 0.5px solid hsla(0, 0%, 60%, 1);"
-								readonly></input>
-						</div>
-						<div id="communitiesoptionH" class="col-4 p-0">
-							<input onclick="handleConfigChange(event)" id='communitiesoption' value='COMUNIDADES'
-								list="brow"
-								style="width: 100%; height: 100%;  font-family: Source Sans Pro; font-weight: bold; text-align: center;font-size: 1.5vmax; letter-spacing: 0.5px; color: grey; cursor: pointer; user-select: none; outline: none; vertical-align: middle; border-top-right-radius: 20px; border-bottom-right-radius: 20px; background: hsla(280,100%,50%,0); border: 0.5px solid hsla(0, 0%, 70%, 1);"
-								readonly></input>
-						</div>
-					</div>
-
-
 					<div id="play-Info-QuarantineH" class="container mt-3">
-						<div class="row">
-							<div id="playButtonH" class="col-6">
-								<input id='playbutton' onclick="playpauseSim(event)" value='Pausa' list="brow"
-									class="btn btn-sm btn-primary" readonly></input>
-							</div>
-
-							<div id="resetButtonH" class="col-6">
-								<input id='resetbutton' onclick="resetSim(event)" value='Reiniciar' list="brow"
-									class="btn btn-sm btn-secondary" readonly></input>
-							</div>
-
+						<div class="d-flex justify-content-around">
+								<button id = "playbutton" type="button" onclick="BotonPlayPause(event)" value="INICIO" class="btn btn-outline-primary">
+									<svg id = "iconplay" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-play-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"></path>
+									  </svg>
+									  <svg id = "iconpause" style="display: none;" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pause-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"></path>
+						  			</svg>
+								</button>
+								  <button type="button" onclick="resetSim(event)" class="btn btn-outline-primary">
+									<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"></path>
+										<path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"></path>
+						  			</svg>
+								  </button>
 						</div>
 						<div id="infoH"
 							style="width: 32%; height: 100%; position: relative; z-index: 1;display: inline-block; color: white; font-size: 1.3vmax; font-family: Source Sans Pro; overflow: auto;">
@@ -371,6 +436,43 @@
 
 					</div>
 
+					
+
+					<div class="text-center">
+						<div>
+							<label>Medidas Sanitarias</label>
+						</div>
+						<div id="quarantineH" class="col text-center align-self-center w-100">
+							
+							<label class="switch">
+								<input type="checkbox"  onchange="handleQClick(event)" id="quarantinecheck"
+								name="quarantinecheck" value="quarantinecheck">
+								<span class="slider"></span>
+							  </label>
+							
+						</div>
+					</div>
+					<!--JPZ Acá se tiene que mejorar la disposicion de los botones-->
+					<div id="caseTypeChooseH" class="d-flex justify-content-around align-self-stretch">
+						
+						<div id="simpleCaseoptionH" class="col"  >
+							<input type ="button" class="button" onclick="handleConfigChange(event)" 
+							id='simpleCaseoption' value='simple' list="brow" readonly> </input>
+						</div>
+						<div id="centralLocationoptionH" class="col" >
+							<input type ="button" class="button" onclick="handleConfigChange(event)" 
+							id='centralLocationoption' value='aglomeración' list="brow" readonly> </input>
+							
+						</div>
+						<div id="communitiesoptionH" class="col" >
+							<input type ="button" class="button" onclick="handleConfigChange(event)" 
+							id='communitiesoption'  value='comunidades' list="brow" readonly> </input>
+						</div>
+					</div>
+					
+
+					
+
 				</div>
 
 			</div>
@@ -378,6 +480,24 @@
 		</div>
 
 		<script src="../js/main-mobile.js"></script>
+		<script>
+			var valor = true
+				function BotonPlayPause(event) {
+				var uno = document.getElementById("iconplay");
+				var dos = document.getElementById("iconpause");
+				if(uno.style.display==""){
+					uno.style.display="none";
+					dos.style.display="";
+					playpauseSim(event);
+					
+				}else{
+					dos.style.display="none";
+					uno.style.display="";
+					playpauseSim(event);
+				}
+				
+				}
+		</script>
 </body>
 <footer class="footer w-100">
 	<div id="titleH" class="text-secondary text-center">
